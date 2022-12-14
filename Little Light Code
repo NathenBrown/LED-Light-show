@@ -1,0 +1,166 @@
+int gOne = 5;
+int gTwo = 3;
+int red = 11;
+int wOne = 6; 
+int wTwo = 10;
+int yellow = 9;
+int led[] = {red, gOne, gTwo, wOne, wTwo, yellow};
+int i = 0;
+int u = 0;
+
+void setup()
+{
+  pinMode(gOne, OUTPUT);
+  pinMode(gTwo, OUTPUT);
+  pinMode(red, OUTPUT);
+  pinMode(wOne, OUTPUT);
+  pinMode(wTwo, OUTPUT);
+  pinMode(yellow, OUTPUT);
+  Serial.begin(9600);
+}
+
+void beat(){
+  digitalWrite(red, HIGH);
+  delay(282);
+  digitalWrite(red,LOW);
+  delay(282);
+}
+
+void littleLight(){
+  digitalWrite(red, 125);
+  delay(250);
+  digitalWrite(red, LOW);
+  digitalWrite(gOne, 125);
+  digitalWrite(gTwo, 125);
+  delay(200);
+  digitalWrite(gOne, LOW);
+  digitalWrite(gTwo, LOW);
+  digitalWrite(wOne, 125);
+  digitalWrite(wTwo, 125);
+  delay(200);
+  digitalWrite(wOne, LOW);
+  digitalWrite(wTwo, LOW);
+  digitalWrite(yellow, HIGH);
+  delay(200);
+  digitalWrite(yellow,LOW);
+  delay(200);
+}
+
+void shine(){
+  //total time = 1 second
+  for (i=0;i<=250;i+=25){
+    digitalWrite(red, i);
+    digitalWrite(gOne, i);
+    digitalWrite(gTwo, i);
+    digitalWrite(wOne, i);
+    digitalWrite(wTwo, i);
+    digitalWrite(yellow, i);
+    delay(50);
+  }
+    for (i=250;i>=0;i-=25){
+    digitalWrite(red, i);
+    digitalWrite(gOne, i);
+    digitalWrite(gTwo, i);
+    digitalWrite(wOne, i);
+    digitalWrite(wTwo, i);
+    digitalWrite(yellow, i);
+    delay(50);
+  }
+    
+}
+
+void mine(){
+  //total time 1 second
+  digitalWrite(red, 125);
+  delay(125);
+  digitalWrite(red, LOW);
+  digitalWrite(gOne, 125);
+  digitalWrite(gTwo, 125);
+  delay(125);
+  digitalWrite(gOne,LOW);
+  digitalWrite(gTwo,LOW);
+  digitalWrite(wOne,125);
+  digitalWrite(wTwo,125);
+  delay(125);
+  digitalWrite(wOne,LOW);
+  digitalWrite(wTwo,LOW);
+  digitalWrite(yellow,HIGH);
+  delay(125);
+  delay(500);
+  digitalWrite(yellow,LOW);
+}
+
+void letItShine(){
+  //total time 1.2 seconds; 0.4 for each
+  digitalWrite(red, 125);
+  delay(125);
+  digitalWrite(gOne, 125);
+  digitalWrite(gTwo, 125);
+  delay(125);
+  digitalWrite(gOne,LOW);
+  digitalWrite(gTwo,LOW);
+  digitalWrite(wOne,125);
+  digitalWrite(wTwo,125);
+  delay(125);
+  digitalWrite(wOne,LOW);
+  digitalWrite(wTwo,LOW);
+  digitalWrite(yellow,HIGH);
+  delay(125);
+  digitalWrite(yellow,LOW);
+  //shine x1^
+  delay(125);
+  digitalWrite(gOne, 125);
+  digitalWrite(gTwo, 125);
+  delay(125);
+  digitalWrite(wOne,125);
+  digitalWrite(wTwo,125);
+  delay(125);
+  digitalWrite(wOne,LOW);
+  digitalWrite(wTwo,LOW);
+  digitalWrite(yellow,HIGH);
+  delay(125);
+  digitalWrite(yellow,LOW);
+  //let it shine x2^
+  delay(250);
+  digitalWrite(wOne,125);
+  digitalWrite(wTwo,125);
+  delay(125);
+  digitalWrite(yellow,125);
+  delay(125);
+  digitalWrite(red, HIGH);
+  digitalWrite(gOne, HIGH);
+  digitalWrite(gTwo, HIGH);
+  digitalWrite(wOne, HIGH);
+  digitalWrite(wTwo, HIGH);
+  digitalWrite(yellow, HIGH);
+}
+
+void loop(){
+  
+    for (i=0;i<=6;i++){ //starting beat
+    beat();
+  }
+  littleLight();
+  mine();
+  delay(300);
+  littleLight();
+  shine();
+  delay(300);
+  littleLight();
+  mine();
+  delay(300);
+  littleLight();
+  shine();
+  delay(300);
+  littleLight();
+  mine();
+  delay(300);
+  littleLight();
+  shine();
+  //let it shine x3
+  letItShine();
+}
+
+
+
+
